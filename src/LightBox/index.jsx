@@ -45,7 +45,7 @@ const ModalBackground = styled.div`
 `;
 
 const GalleryWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   width: 30%;
