@@ -5,10 +5,16 @@ const CartContext = createContext();
 function updateCart(state, action) {
   switch (action.type) {
     case "add-product": {
-      return { quantity: state.quantity + action.payload };
+      return { ...state, quantity: state.quantity + action.payload };
     }
     case "remove-product": {
-      return { quantity: 0 };
+      return { ...state, quantity: 0 };
+    }
+    case "set-lightbox": {
+      return { ...state, lightBox: true };
+    }
+    case "unset-lightbox": {
+      return { ...state, lightBox: false };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -17,7 +23,10 @@ function updateCart(state, action) {
 }
 
 export function CartProvider({ children }) {
-  const [state, dispatch] = useReducer(updateCart, { quantity: 0 });
+  const [state, dispatch] = useReducer(updateCart, {
+    quantity: 0,
+    lightBox: false,
+  });
   const value = { state, dispatch };
   return (
     <CartContext.Provider value={value}> {children} </CartContext.Provider>

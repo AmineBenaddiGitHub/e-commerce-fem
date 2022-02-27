@@ -1,54 +1,21 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-import Thumb1 from "../assets/image-product-1-thumbnail.jpg";
-import Thumb2 from "../assets/image-product-2-thumbnail.jpg";
-import Thumb3 from "../assets/image-product-3-thumbnail.jpg";
-import Thumb4 from "../assets/image-product-4-thumbnail.jpg";
 import Plus from "../assets/icon-plus.svg";
 import Minus from "../assets/icon-minus.svg";
 import Cart from "../assets/icon-cart-white.svg";
+import Gallery from "../Gallery";
 
 import { useCart } from "../Context";
 
 export default function Content() {
-  const [imgNbr, setImgNbr] = useState(1);
   const [quantity, setQuantity] = useState(0);
-  const { state, dispatch } = useCart();
+  const { dispatch } = useCart();
   return (
     <ContentWrapper>
-      <Gallery>
-        <MainImg
-          src={require(`../assets/image-product-${imgNbr}.jpg`)}
-          alt={`image-product-${imgNbr}.jpg`}
-        />
-        <Thumbnails>
-          <ThumbImg
-            src={Thumb1}
-            alt="thumb-1"
-            isActive={imgNbr === 1}
-            onClick={() => setImgNbr(1)}
-          />
-          <ThumbImg
-            src={Thumb2}
-            alt="thumb-2"
-            isActive={imgNbr === 2}
-            onClick={() => setImgNbr(2)}
-          />
-          <ThumbImg
-            src={Thumb3}
-            alt="thumb-3"
-            isActive={imgNbr === 3}
-            onClick={() => setImgNbr(3)}
-          />
-          <ThumbImg
-            src={Thumb4}
-            alt="thumb-4"
-            isActive={imgNbr === 4}
-            onClick={() => setImgNbr(4)}
-          />
-        </Thumbnails>
-      </Gallery>
+      <GalleryWrapper>
+        <Gallery />
+      </GalleryWrapper>
       <ArticleDescription>
         <H1>Sneaker Company</H1>
         <H2>Fall limited edition sneakers</H2>
@@ -85,8 +52,7 @@ export default function Content() {
               setQuantity(0);
             }}
           >
-            <CartImg src={Cart} alt="cart" />{" "}
-            <p>Add to cart</p>
+            <CartImg src={Cart} alt="cart" /> <p>Add to cart</p>
           </Checkout>
         </Order>
       </ArticleDescription>
@@ -100,37 +66,8 @@ const ContentWrapper = styled.section`
   align-items: center;
 `;
 
-const Gallery = styled.div`
-  margin: 4rem 2rem 2rem 2rem;
-  width: 100%;
-`;
-
 const ArticleDescription = styled.div`
   width: 100%;
-`;
-
-const MainImg = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 2rem;
-`;
-
-const Thumbnails = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 2rem 0;
-`;
-
-const ThumbImg = styled.img`
-  border-radius: 2rem;
-  width: 130px;
-  box-sizing: border-box;
-  cursor: pointer;
-  ${({ isActive }) =>
-    isActive
-      ? `border: 3px solid orange; opacity: 0.5;`
-      : `border: 3px solid white;`}
 `;
 
 const H1 = styled.h1`
@@ -222,4 +159,9 @@ const QuantityImg = styled.button`
 const CartImg = styled.img`
   filter: invert(1);
   margin-right: 2rem;
+`;
+
+const GalleryWrapper = styled.div`
+  margin: 4rem 2rem 2rem 2rem;
+  width: 100%;
 `;

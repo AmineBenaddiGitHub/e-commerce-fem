@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 import Header from "./Header";
 import Content from "./Content";
+import LightBox from "./LightBox";
 
 function App() {
   return (
-    <SiteWrapper>
-      <Header />
-      <Content />
-    </SiteWrapper>
+    <>
+      <LightBox />
+      <SiteWrapper>
+        <Header />
+        <Content />
+      </SiteWrapper>
+    </>
   );
 }
 
